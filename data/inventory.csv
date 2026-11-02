@@ -1,0 +1,61 @@
+product_id,product_name,category,fabric,colour,price,branch,stock_qty,reorder_level,last_restocked
+TZ-101,Mint Georgette Anarkali,anarkali,Georgette,Mint,4299,Branch 1,3,5,2026-10-01
+TZ-101,Mint Georgette Anarkali,Anarkali,Georgette,Mint,"₹4,299",Branch 2,6,5,2026-09-26
+TZ-102,Lavender Organza Lehenga,Lehenga,Organza,Lavender,"₹6,499",Branch 1,4,3,2026-09-28
+TZ-102,Lavender Organza Lehenga,Lehenga,Organza,Lavender,6499/-,Branch 2,5,3,2026-09-23
+TZ-103,Powder Blue Chikankari Kurta Set,Women Kurta Set,Cotton,Powder Blue,2899/-,Branch 1,2,8,2026-09-25
+TZ-103,Powder Blue Chikankari Kurta Set,Women Kurta Set,Cotton,Powder Blue,Rs. 2899,Branch 2,1,8,2026-09-20
+TZ-104,Peach Sharara Set,Sharara,Chinon,Peach,Rs. 3799,Branch 1,6,4,2026-09-22
+TZ-104,Peach Sharara Set,Sharara,Chinon,Peach,"3,799",Branch 2,4,4,2026-09-17
+TZ-105,Mango Yellow Soft Silk Saree,Saree,Soft Silk,Yellow,"2,499",Branch 1,1,5,2026-09-19
+TZ-105,Mango Yellow Soft Silk Saree,Saree,Soft Silk,Yellow,2499,Branch 2,9,5,2026-09-14
+TZ-106,Haldi Special Kota Saree,Saree,Kota Cotton,Yellow,1199,Branch 1,3,10,2026-09-16
+TZ-106,Haldi Special Kota Saree,Saree,Kota Cotton,Yellow,"₹1,199",Branch 2,2,10,2026-09-11
+TZ-107,Mustard Gadwal Silk Saree,Saree,Gadwal Silk,Mustard,"₹5,999",Branch 1,5,2,2026-09-13
+TZ-107,Mustard Gadwal Silk Saree,saree,Gadwal Silk,Mustard,5999/-,Branch 2,5,2,2026-09-08
+TZ-108,Lemon Yellow Organza Saree,saree,Organza,Lemon Yellow,2850/-,Branch 1,0,4,2026-09-10
+TZ-108,Lemon Yellow Organza Saree,Saree,Organza,Lemon Yellow,Rs. 2850,Branch 2,7,4,2026-09-05
+TZ-109,Pastel Pink Chanderi Saree,Saree,Chanderi Cotton,Pastel Pink,Rs. 1899,Branch 1,12,6,2026-09-07
+TZ-109,Pastel Pink Chanderi Saree,Saree,Chanderi Cotton,Pastel Pink,"1,899",Branch 2,3,6,2026-09-02
+TZ-110,Maroon Silk Kurta Set,Men Kurta Set,Art Silk,Maroon,"3,499",Branch 1,1,5,2026-09-04
+TZ-110,Maroon Silk Kurta Set,Men Kurta Set,Art Silk,Maroon,3499,Branch 2,2,5,2026-08-30
+TZ-111,Ivory Jacquard Kurta Set,Men Kurta Set,Jacquard,Ivory,4299,Branch 1,6,3,2026-09-01
+TZ-111,Ivory Jacquard Kurta Set,Men Kurta Set,Jacquard,Ivory,"₹4,299",Branch 2,6,3,2026-08-27
+TZ-112,Classic Cotton Kurta,Men Kurta,Cotton,White,₹899,Branch 1,25,15,2026-08-29
+TZ-112,Classic Cotton Kurta,Men Kurta,Cotton,White,899/-,Branch 2,18,15,2026-08-24
+TZ-113,Royal Sherwani,Sherwani,Silk Brocade,Cream,14999/-,Branch 1,4,1,2026-08-26
+TZ-113,Royal Sherwani,Sherwani,Silk Brocade,Cream,Rs. 14999,Branch 2,3,1,2026-08-21
+TZ-114,Navy Nehru Jacket Set,Men Kurta Set,Linen Blend,Navy,Rs. 5499,Branch 1,14,3,2026-08-23
+TZ-114,Navy Nehru Jacket Set,men kurta set,Linen Blend,Navy,"5,499",Branch 2,12,3,2026-08-18
+TZ-115,Pastel Green Lehenga,lehenga,Net,Pastel Green,"4,999",Branch 1,2,3,2026-08-20
+TZ-115,Pastel Green Lehenga,Lehenga,Net,Pastel Green,4999,Branch 2,3,3,2026-08-15
+TZ-116,Banarasi Silk Saree,Saree,Banarasi Silk,Red,8999,Branch 1,3,3,2026-08-17
+TZ-116,Banarasi Silk Saree,Saree,Banarasi Silk,Red,"₹8,999",Branch 2,1 pc,3,2026-08-12
+TZ-117,Kanjivaram Silk Saree,Saree,Kanjivaram Silk,Bottle Green,"₹11,999",Branch 1,4,2,2026-08-14
+TZ-117,Kanjivaram Silk Saree,Saree,Kanjivaram Silk,Bottle Green,11999/-,Branch 2,2,2,2026-08-09
+TZ-118,Kids Pattu Pavadai,Kids,Silk,Pink,1499/-,Branch 1,8,5,2026-08-11
+TZ-118,kids pattu pavadai,Kids,Silk,Pink,Rs. 1499,Branch 2,10,5,2026-08-06
+TZ-119,Printed Cotton Dupatta,Accessories,Cotton,Multi,Rs. 399,Branch 1,30,10,2026-08-08
+TZ-119,Printed Cotton Dupatta,Accessories,Cotton,Multi,399,Branch 2,22,10,2026-08-03
+TZ-120,Yellow Mirror Work Kurta Set,Women Kurta Set,Rayon,Yellow,"1,799",Branch 1,9,6,2026-08-05
+TZ-120,Yellow Mirror Work Kurta Set,Women Kurta Set,Rayon,Yellow,1799,Branch 2,7,6,2026-09-29
+TZ-121,Sky Blue Sequin Saree,Saree,Georgette,Sky Blue,3299,Branch 1,16,3,2026-10-01
+TZ-121,Sky Blue Sequin Saree,saree,Georgette,Sky Blue,"₹3,299",Branch 2,11,3,2026-09-26
+TZ-122,Oxidised Jhumka,accessories,Metal,Silver,₹299,Branch 1,40,15,2026-09-28
+TZ-122,Oxidised Jhumka,Accessories,Metal,Silver,299/-,Branch 2,35,15,2026-09-23
+TZ-123,Maroon Velvet Kurta Set,Men Kurta Set,Velvet,Maroon,4799/-,Branch 1,13,3,2026-09-25
+TZ-123,Maroon Velvet Kurta Set,Men Kurta Set,Velvet,Maroon,Rs. 4799,Branch 2,9,3,2026-09-20
+TZ-124,Peach Tissue Saree,Saree,Tissue Silk,Peach,Rs. 4599,Branch 1,,3,2026-09-22
+TZ-124,Peach Tissue Saree,Saree,Tissue Silk,Peach,"4,599",Branch 2,4,3,2026-09-17
+TZ-125,Cream Chikankari Kurta (Men),Men Kurta,Cotton,Cream,"1,299",Branch 1,7,6,2026-09-19
+TZ-125,Cream Chikankari Kurta (Men),Men Kurta,Cotton,Cream,1299,Branch 2,5,6,2026-09-14
+TZ-126,Bandhani Cotton Saree,Saree,Cotton,Red,1599,Branch 1,18,4,2026-09-16
+TZ-126,Bandhani Cotton Saree,Saree,Cotton,Red,"₹1,599",Branch 2,14,4,2026-09-11
+TZ-127,Embroidered Potli Bag,Accessories,Silk,Gold,₹699,Branch 1,12,6,2026-09-13
+TZ-127,Embroidered Potli Bag,Accessories,Silk,Gold,699/-,Branch 2,1,6,2026-09-08
+TZ-128,Pochampally Ikat Saree,Saree,Ikat Silk,Blue,3999/-,Branch 1,0,3,2026-09-10
+TZ-128,Pochampally Ikat Saree,saree,Ikat Silk,Blue,Rs. 3999,Branch 2,out of stock,3,2026-09-05
+TZ-129,Kids Sherwani Set,kids,Art Silk,Cream,Rs. 2199,Branch 1,5,3,2026-09-07
+TZ-129,Kids Sherwani Set,Kids,Art Silk,Cream,"2,199",Branch 2,6,3,2026-09-02
+TZ-130,Linen Saree,Saree,Linen,Grey,"2,299",Branch 1,6,3,2026-09-04
+TZ-130,Linen Saree,Saree,Linen,Grey,2299,Branch 2,5,3,2026-08-30
