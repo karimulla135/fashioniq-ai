@@ -39,6 +39,30 @@ def parse_discount(value):
     return float(cleaned)
 
 
+def parse_stock_qty(value):
+    """Normalize stock quantities while preserving unknown values."""
+
+    if pd.isna(value):
+        return float("nan")
+
+    cleaned = str(value).strip().lower()
+
+    if cleaned == "out of stock":
+        return 0
+
+    cleaned = re.sub(
+        r"\s*(pc|pcs|pieces?)\s*$",
+        "",
+        cleaned
+    )
+
+    try:
+        return float(cleaned)
+    except ValueError:
+        return float("nan")
+
+
+
 def clean_inventory(df):
 
     df = df.copy()
@@ -68,9 +92,7 @@ def clean_inventory(df):
     df["price"] = df["price"].apply(parse_price)
 
     # Convert numerical columns
-    df["stock_qty"] = pd.to_numeric(
-        df["stock_qty"], errors="coerce"
-    )
+    df["stock_qty"] = df["stock_qty"].apply(parse_stock_qty)
 
     df["reorder_level"] = pd.to_numeric(
         df["reorder_level"], errors="coerce"
@@ -86,6 +108,7 @@ def clean_inventory(df):
 
     # Preserve missing stock as unknown
     df["stock_missing"] = df["stock_qty"].isna()
+    df["stock_is_zero"] = df["stock_qty"].eq(0)
 
     return df
 
@@ -191,3 +214,5 @@ if __name__ == "__main__":
     print("Returns:", sales["is_return"].sum())
 
     print("\nCleaning completed!")
+
+
