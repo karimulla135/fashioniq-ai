@@ -4,8 +4,153 @@ import pandas as pd
 from tools.inventory_tools import get_reorder_suggestions
 from tools.sales_tools import (
     get_slow_moving_products,
-    compare_branch_sales
+    compare_branch_sales,
+    get_category_sales,
+
 )
+
+
+def get_category_revenue_metrics(
+    sales,
+    inventory,
+    start_date,
+    end_date,
+    branch=None
+):
+    """
+    Calculate category revenue, units sold, transactions
+    and percentage contribution using actual sales data.
+    """
+
+    category_sales = get_category_sales(
+        sales,
+        inventory,
+        start_date,
+        end_date,
+        branch=branch
+    )
+
+    if category_sales.empty:
+        return {
+            "status": "no_data",
+            "message": "No category sales found for this period.",
+            "categories": [],
+            "total_revenue": 0.0
+        }
+
+    result = category_sales.copy()
+
+    result["revenue"] = pd.to_numeric(
+        result["revenue"],
+        errors="coerce"
+    ).fillna(0.0)
+
+    total_revenue = float(result["revenue"].sum())
+
+    if total_revenue != 0:
+        result["revenue_share_percent"] = (
+            result["revenue"] / total_revenue * 100
+        )
+    else:
+        result["revenue_share_percent"] = 0.0
+
+    return {
+        "status": "success",
+        "period_start": str(start_date),
+        "period_end": str(end_date),
+        "branch": branch or "All branches",
+        "total_revenue": total_revenue,
+        "categories": result.to_dict(orient="records")
+    }
+
+
+def compare_category_revenue(
+    sales,
+    inventory,
+    start_date,
+    end_date,
+    category_a,
+    category_b
+):
+    """
+    Compare two categories using actual category sales.
+
+    Percentage change is calculated relative to category_b.
+    """
+
+    if not category_a.strip() or not category_b.strip():
+        raise ValueError("Both category names are required.")
+
+    if category_a.strip().casefold() == category_b.strip().casefold():
+        raise ValueError("Please provide two different categories.")
+
+    metrics = get_category_revenue_metrics(
+        sales,
+        inventory,
+        start_date,
+        end_date
+    )
+
+    categories = metrics["categories"]
+
+    category_lookup = {
+        str(item["category"]).strip().casefold(): item
+        for item in categories
+    }
+
+    key_a = category_a.strip().casefold()
+    key_b = category_b.strip().casefold()
+
+    missing = [
+        name
+        for name, key in [
+            (category_a, key_a),
+            (category_b, key_b)
+        ]
+        if key not in category_lookup
+    ]
+
+    if missing:
+        return {
+            "status": "no_data",
+            "message": "One or both categories were not found.",
+            "missing_categories": missing,
+            "period_start": str(start_date),
+            "period_end": str(end_date)
+        }
+
+    revenue_a = float(category_lookup[key_a]["revenue"])
+    revenue_b = float(category_lookup[key_b]["revenue"])
+
+    difference = revenue_a - revenue_b
+
+    if revenue_b != 0:
+        percentage_change = (
+            difference / revenue_b
+        ) * 100
+
+        revenue_ratio = revenue_a / revenue_b
+    else:
+        percentage_change = None
+        revenue_ratio = None
+
+    return {
+        "status": "success",
+        "period_start": str(start_date),
+        "period_end": str(end_date),
+        "category_a": category_a,
+        "category_b": category_b,
+        "category_a_revenue": revenue_a,
+        "category_b_revenue": revenue_b,
+        "revenue_difference": difference,
+        "percentage_change_relative_to_category_b": percentage_change,
+        "revenue_ratio": revenue_ratio,
+        "formula": (
+            "(Category A revenue - Category B revenue) "
+            "/ Category B revenue * 100"
+        )
+    }
+
 
 
 def get_reorder_recommendations(inventory, branch=None):

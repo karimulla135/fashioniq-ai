@@ -9,7 +9,9 @@ from tools.business_insights import (
     get_slow_moving_inventory,
     calculate_slow_moving_capital,
     get_branch_performance_insights,
-    generate_business_recommendations
+    generate_business_recommendations,
+    get_category_revenue_metrics,
+    compare_category_revenue,
 )
 
 
@@ -254,4 +256,99 @@ def test_branch_specific_reorder(datasets):
 
     assert (result["branch"] == "Branch 1").all()
 
+
+# 9. Category revenue metrics
+
+def test_category_revenue_metrics(datasets):
+
+    inventory, sales = datasets
+
+    result = get_category_revenue_metrics(
+        sales,
+        inventory,
+        "2026-10-01",
+        "2026-10-31"
+    )
+
+    assert result["status"] == "success"
+
+    assert result["total_revenue"] == pytest.approx(760)
+
+    categories = result["categories"]
+
+    total_share = sum(
+        item["revenue_share_percent"]
+        for item in categories
+    )
+
+    assert total_share == pytest.approx(100)
+
+
+# 10. Exact category revenue comparison
+
+def test_compare_category_revenue(datasets):
+
+    inventory, sales = datasets
+
+    result = compare_category_revenue(
+        sales,
+        inventory,
+        "2026-10-01",
+        "2026-10-31",
+        "Lehenga",
+        "Saree"
+    )
+
+    assert result["status"] == "success"
+
+    assert result["category_a_revenue"] == pytest.approx(600)
+
+    assert result["category_b_revenue"] == pytest.approx(80)
+
+    assert result["revenue_difference"] == pytest.approx(520)
+
+    assert (
+        result["percentage_change_relative_to_category_b"]
+        == pytest.approx(650)
+    )
+
+    assert result["revenue_ratio"] == pytest.approx(7.5)
+
+
+# 11. Missing category handling
+
+def test_compare_category_missing_data(datasets):
+
+    inventory, sales = datasets
+
+    result = compare_category_revenue(
+        sales,
+        inventory,
+        "2026-10-01",
+        "2026-10-31",
+        "Saree",
+        "Nonexistent Category"
+    )
+
+    assert result["status"] == "no_data"
+
+    assert "Nonexistent Category" in result["missing_categories"]
+
+
+# 12. Reject comparing the same category
+
+def test_compare_same_category_rejected(datasets):
+
+    inventory, sales = datasets
+
+    with pytest.raises(ValueError):
+
+        compare_category_revenue(
+            sales,
+            inventory,
+            "2026-10-01",
+            "2026-10-31",
+            "Saree",
+            "Saree"
+        )
 
