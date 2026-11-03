@@ -1,6 +1,7 @@
 
 import pandas as pd
 import pytest
+from utils.data_cleaning import parse_mixed_date
 
 from utils.data_cleaning import (
     parse_price,
@@ -205,3 +206,23 @@ def test_unknown_product_detection():
     assert pd.isna(cleaned["unit_price"].iloc[0])
 
 
+
+def test_parse_iso_date():
+    result = parse_mixed_date("2026-10-01")
+    assert result == pd.Timestamp("2026-10-01")
+
+
+def test_parse_day_first_date():
+    result = parse_mixed_date("01-08-2026")
+    assert result == pd.Timestamp("2026-08-01")
+
+
+def test_parse_mixed_date_formats():
+    iso = parse_mixed_date("2026-08-01")
+    day_first = parse_mixed_date("01-08-2026")
+
+    assert iso == day_first
+
+
+def test_invalid_date():
+    assert pd.isna(parse_mixed_date("invalid-date"))

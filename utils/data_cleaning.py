@@ -62,6 +62,34 @@ def parse_stock_qty(value):
         return float("nan")
 
 
+def parse_mixed_date(value):
+    """Safely parse ISO and day-first date formats."""
+
+    if pd.isna(value):
+        return pd.NaT
+
+    value = str(value).strip()
+
+    try:
+        # ISO format: YYYY-MM-DD
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+            return pd.to_datetime(
+                value,
+                format="%Y-%m-%d",
+                errors="coerce"
+            )
+
+        # Other formats: DD-MM-YYYY or DD/MM/YYYY
+        return pd.to_datetime(
+            value,
+            dayfirst=True,
+            errors="coerce"
+        )
+
+    except (ValueError, TypeError):
+        return pd.NaT
+
+
 
 def clean_inventory(df):
 
@@ -99,12 +127,9 @@ def clean_inventory(df):
     )
 
     # Parse restock dates
-    df["last_restocked"] = pd.to_datetime(
-        df["last_restocked"],
-        format="mixed",
-        dayfirst=True,
-        errors="coerce"
-    )
+    df["last_restocked"] = df["last_restocked"].apply(
+    parse_mixed_date
+)
 
     # Preserve missing stock as unknown
     df["stock_missing"] = df["stock_qty"].isna()
@@ -128,12 +153,7 @@ def clean_sales(df, inventory):
     df["product_id"] = df["product_id"].str.upper()
 
     # Parse dates, including mixed formats
-    df["date"] = pd.to_datetime(
-        df["date"],
-        format="mixed",
-        dayfirst=True,
-        errors="coerce"
-    )
+    df["date"] = df["date"].apply(parse_mixed_date)
 
     # Convert numerical values
     df["quantity"] = pd.to_numeric(
