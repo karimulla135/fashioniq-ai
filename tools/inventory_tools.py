@@ -132,6 +132,10 @@ def get_reorder_suggestions(inventory, branch=None):
         - low_stock["stock_qty"]
     ).clip(lower=0)
 
+    low_stock = low_stock[
+    low_stock["suggested_reorder_qty"] > 0
+]
+
     return low_stock.reset_index(drop=True)
 
 
